@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculadoras para freelancers em Portugal (2026)</title>
+<meta name="description" content="Calcula quanto cobrar à hora, o líquido do recibo verde e o teu orçamento. Valores de 2026, grátis.">
+<style>
+:root{--bg:#fafaf7;--fg:#1c1c1a;--mut:#6b6b66;--card:#fff;--bd:#e3e3dc;--ac:#0f6b4f;--acfg:#fff;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#161614;--fg:#eeeee8;--mut:#a0a09a;--card:#1f1f1c;--bd:#33332f;--ac:#3fbf93;--acfg:#10201a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.6rem;line-height:1.2;margin:8px 0}
+h2{font-size:1.15rem;margin:0 0 12px}
+p.s{color:var(--mut);margin:0 0 20px}
+section{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin:16px 0}
+label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 4px}
+input{width:100%;padding:10px;font-size:1rem;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg)}
+.out{margin-top:14px;padding:12px;border-radius:8px;background:var(--bg);border:1px solid var(--bd)}
+.big{font-size:1.5rem;font-weight:700;color:var(--ac)}
+.row{display:flex;justify-content:space-between;gap:8px;font-size:.95rem;padding:2px 0}
+a.btn{display:block;text-align:center;background:var(--ac);color:var(--acfg);padding:12px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:12px}
+ul{padding-left:20px;margin:8px 0}
+small{color:var(--mut);display:block;margin-top:10px;font-size:.8rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Calculadoras para freelancers em Portugal</h1>
+<p class="s">Quanto cobrar, quanto fica no bolso e como orçamentar. Parâmetros de 2026.</p>
+
+<section id="c1">
+<h2>1. Quanto devo cobrar à hora?</h2>
+<label>Líquido mensal pretendido (€)</label><input id="n" type="number" value="1500" inputmode="decimal">
+<label>Despesas mensais da atividade (€)</label><input id="e" type="number" value="150" inputmode="decimal">
+<label>Horas faturáveis por mês</label><input id="h" type="number" value="100" inputmode="decimal">
+<label>Reserva de IRS (% do rendimento tributável)</label><input id="i1" type="number" value="15" inputmode="decimal">
+<div class="out"><div class="big" id="r1">—</div><div class="row"><span>Faturação mensal necessária (sem IVA)</span><b id="b1">—</b></div></div>
+</section>
+
+<section id="c2">
+<h2>2. Quanto fica de um recibo verde?</h2>
+<label>Faturação mensal sem IVA (€)</label><input id="f" type="number" value="2000" inputmode="decimal">
+<label>Coeficiente do IRS simplificado</label><input id="k" type="number" step="0.05" value="0.75" inputmode="decimal">
+<label>Reserva de IRS (% do rendimento tributável)</label><input id="i2" type="number" value="15" inputmode="decimal">
+<div class="out"><div class="big" id="r2">—</div>
+<div class="row"><span>Segurança Social estimada</span><b id="s2">—</b></div>
+<div class="row"><span>Reserva de IRS</span><b id="t2">—</b></div></div>
+</section>
+
+<section id="c3">
+<h2>3. Gerador de orçamento</h2>
+<label>Descrição do serviço</label><input id="d" type="text" value="Design de website">
+<label>Horas estimadas</label><input id="oh" type="number" value="20" inputmode="decimal">
+<label>Preço por hora (€)</label><input id="op" type="number" value="35" inputmode="decimal">
+<label>Extras (€)</label><input id="ox" type="number" value="0" inputmode="decimal">
+<label>IVA (%) — 0 se isento</label><input id="ov" type="number" value="23" inputmode="decimal">
+<div class="out"><div class="row"><span>Subtotal</span><b id="o1">—</b></div><div class="row"><span>IVA</span><b id="o2">—</b></div><div class="big" id="o3">—</div></div>
+</section>
+
+<section>
+<h2>Pack de modelos para freelancers</h2>
+<ul><li>Contrato de prestação de serviços</li><li>Modelo de orçamento e proposta</li><li>Folha de cálculo de preços e despesas</li><li>Checklist de cobrança e faturação</li></ul>
+<a class="btn" href="LINK_GUMROAD_AQUI">Obter o pack</a>
+</section>
+
+<small>Valores de 2026: taxa contributiva de 21,4% sobre 70% da prestação de serviços (rendimento relevante), contribuição mínima de 20 €, base máxima de 12 IAS (6 445,56 €). O IRS é uma estimativa por percentagem que tu defines; o cálculo real depende dos escalões, deduções e retenções. A primeira atividade pode ter isenção de contribuições nos primeiros 12 meses, não considerada aqui. Isto é uma ferramenta informativa e não substitui um contabilista certificado. Confirma sempre em seg-social.pt e portaldasfinancas.gov.pt.</small>
+</main>
+<script>
+var IAS=537.13,TX=0.214,REL=0.7,CAP=12*IAS;
+function v(id){return parseFloat(document.getElementById(id).value)||0}
+function eur(x){return x.toLocaleString('pt-PT',{style:'currency',currency:'EUR'})}
+function ss(b){if(b<=0)return 0;return Math.max(20,TX*Math.min(REL*b,CAP))}
+function net(b,k,i){return b-ss(b)-b*k*i/100}
+function calc(){
+ var k=0.75,i=v('i1'),target=v('n')+v('e'),lo=0,hi=100000,m;
+ for(var j=0;j<60;j++){m=(lo+hi)/2;if(net(m,k,i)<target)lo=m;else hi=m}
+ var h=v('h');
+ document.getElementById('b1').textContent=eur(hi);
+ document.getElementById('r1').textContent=h>0?eur(hi/h)+' / hora':'—';
+ var f=v('f'),k2=v('k'),i2=v('i2');
+ document.getElementById('s2').textContent=eur(ss(f));
+ document.getElementById('t2').textContent=eur(f*k2*i2/100);
+ document.getElementById('r2').textContent=eur(net(f,k2,i2))+' líquidos';
+ var sub=v('oh')*v('op')+v('ox'),iva=sub*v('ov')/100;
+ document.getElementById('o1').textContent=eur(sub);
+ document.getElementById('o2').textContent=eur(iva);
+ document.getElementById('o3').textContent=eur(sub+iva);
+}
+document.querySelectorAll('input').forEach(function(e){e.addEventListener('input',calc)});
+calc();
+</script>
+</body>
+</html>
